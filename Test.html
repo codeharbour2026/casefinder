@@ -1,0 +1,103 @@
+<!-- Container for the search selection -->
+
+<style>
+  .search-container {
+  margin-bottom: 15px;
+}
+
+select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.bubble-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; /* Spaces out the bubbles */
+}
+
+.bubble {
+  background-color: #007bff;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px; /* Makes it a pill shape */
+  font-family: sans-serif;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.remove-btn {
+  margin-left: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.remove-btn:hover {
+  color: #ffcccc;
+}
+
+</style>
+
+
+<div class="search-container">
+  <label for="keyword-select">Choose Keywords:</label>
+  <select id="keyword-select">
+    <option value="" disabled selected>Select a keyword...</option>
+    <option value="HTML">HTML</option>
+    <option value="CSS">CSS</option>
+    <option value="JavaScript">JavaScript</option>
+    <option value="UX/UI">UX/UI</option>
+  </select>
+</div>
+
+<!-- Container where bubbles will appear -->
+<div id="bubble-container" class="bubble-container"></div>
+<script>
+const selectElement = document.getElementById('keyword-select');
+const bubbleContainer = document.getElementById('bubble-container');
+
+selectElement.addEventListener('change', function() {
+  const selectedValue = this.value;
+  const selectedText = this.options[this.selectedIndex].text;
+
+  if (!selectedValue) return;
+
+  // 1. Create the bubble element
+  const bubble = document.createElement('div');
+  bubble.classList.add('bubble');
+  bubble.textContent = selectedText;
+
+  // 2. Create the close/delete button inside the bubble
+  const removeBtn = document.createElement('span');
+  removeBtn.classList.add('remove-btn');
+  removeBtn.innerHTML = ' &times;'; // Displays an 'X' symbol
+  
+  // 3. Handle removing the bubble
+  removeBtn.addEventListener('click', function() {
+    bubble.remove();
+    // Put the option back in the dropdown list
+    const option = document.createElement('option');
+    option.value = selectedValue;
+    option.text = selectedText;
+    selectElement.appendChild(option);
+  });
+
+  // Assemble and append
+  bubble.appendChild(removeBtn);
+  bubbleContainer.appendChild(bubble);
+
+  // 4. Remove the option from the dropdown so it can't be picked again
+  this.options[this.selectedIndex].remove();
+
+  // Reset dropdown to the placeholder
+  this.value = '';
+});
+
+
+</script>
+
+
+
+
