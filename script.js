@@ -80,18 +80,103 @@ const courtBubbles = document.getElementById("court-bubbles");
 const minYear = document.getElementById("min-year");
 const maxYear = document.getElementById("max-year");
 const yearDisplay = document.getElementById("year-display");
+const rangeSelected = document.getElementById("range-selected");
 
-const clearFiltersButton = document.getElementById("clear-filters");
+const clearFiltersButton =
+    document.getElementById("clear-filters");
 
-const searchPage = document.getElementById("search-page");
-const casePage = document.getElementById("case-page");
-const backButton = document.getElementById("back-button");
+const searchPage =
+    document.getElementById("search-page");
+
+const casePage =
+    document.getElementById("case-page");
+
+const aboutPage =
+    document.getElementById("about-page");
+
+const backButton =
+    document.getElementById("back-button");
+
+const mobileMenuButton =
+    document.getElementById("mobile-menu-button");
+
+const mobileNav =
+    document.getElementById("mobile-nav");
 
 let selectedLaws = [];
 let selectedCourts = [];
 
 
-/* Display cases */
+/* -------------------------
+   Navigation
+------------------------- */
+
+function showSearchPage() {
+    searchPage.classList.remove("hidden");
+    casePage.classList.add("hidden");
+    aboutPage.classList.add("hidden");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function showAboutPage() {
+    searchPage.classList.add("hidden");
+    casePage.classList.add("hidden");
+    aboutPage.classList.remove("hidden");
+
+    mobileNav.classList.remove("open");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+document.getElementById("home-button")
+    .addEventListener("click", showSearchPage);
+
+document.getElementById("nav-search")
+    .addEventListener("click", showSearchPage);
+
+document.getElementById("mobile-search")
+    .addEventListener("click", showSearchPage);
+
+document.getElementById("nav-about")
+    .addEventListener("click", showAboutPage);
+
+document.getElementById("mobile-about")
+    .addEventListener("click", showAboutPage);
+
+
+/* Mobile menu */
+
+mobileMenuButton.addEventListener("click", () => {
+    mobileNav.classList.toggle("open");
+});
+
+
+/* Keyboard shortcut */
+
+document.addEventListener("keydown", event => {
+
+    if (
+        (event.metaKey || event.ctrlKey) &&
+        event.key.toLowerCase() === "k"
+    ) {
+        event.preventDefault();
+
+        showSearchPage();
+        search.focus();
+    }
+});
+
+
+/* -------------------------
+   Case Results
+------------------------- */
 
 function displayCases(list) {
 
@@ -142,11 +227,14 @@ function displayCases(list) {
 }
 
 
-/* Open individual case */
+/* -------------------------
+   Individual Case
+------------------------- */
 
 function openCase(caseId) {
 
-    const selectedCase = cases.find(c => c.id === caseId);
+    const selectedCase =
+        cases.find(c => c.id === caseId);
 
     if (!selectedCase) {
         return;
@@ -180,6 +268,7 @@ function openCase(caseId) {
         selectedCase.judgment;
 
     searchPage.classList.add("hidden");
+    aboutPage.classList.add("hidden");
     casePage.classList.remove("hidden");
 
     window.scrollTo({
@@ -189,31 +278,26 @@ function openCase(caseId) {
 }
 
 
-/* Back to search */
-
-backButton.addEventListener("click", () => {
-
-    casePage.classList.add("hidden");
-    searchPage.classList.remove("hidden");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-});
+backButton.addEventListener("click", showSearchPage);
 
 
-/* Create filter bubble */
+/* -------------------------
+   Filter Bubbles
+------------------------- */
 
 function createBubble(container, value, type) {
 
-    const bubble = document.createElement("div");
+    const bubble =
+        document.createElement("div");
 
     bubble.classList.add("bubble");
 
     bubble.innerHTML = `
         <span>${value}</span>
-        <button class="remove-btn">
+        <button
+            class="remove-btn"
+            aria-label="Remove ${value}"
+        >
             ×
         </button>
     `;
@@ -223,15 +307,17 @@ function createBubble(container, value, type) {
         .addEventListener("click", () => {
 
             if (type === "law") {
-                selectedLaws = selectedLaws.filter(
-                    item => item !== value
-                );
+                selectedLaws =
+                    selectedLaws.filter(
+                        item => item !== value
+                    );
             }
 
             if (type === "court") {
-                selectedCourts = selectedCourts.filter(
-                    item => item !== value
-                );
+                selectedCourts =
+                    selectedCourts.filter(
+                        item => item !== value
+                    );
             }
 
             updateBubbles();
@@ -241,8 +327,6 @@ function createBubble(container, value, type) {
     container.appendChild(bubble);
 }
 
-
-/* Update bubbles */
 
 function updateBubbles() {
 
@@ -265,7 +349,10 @@ lawSelect.addEventListener("change", () => {
 
     const value = lawSelect.value;
 
-    if (value && !selectedLaws.includes(value)) {
+    if (
+        value &&
+        !selectedLaws.includes(value)
+    ) {
         selectedLaws.push(value);
     }
 
@@ -282,7 +369,10 @@ courtSelect.addEventListener("change", () => {
 
     const value = courtSelect.value;
 
-    if (value && !selectedCourts.includes(value)) {
+    if (
+        value &&
+        !selectedCourts.includes(value)
+    ) {
         selectedCourts.push(value);
     }
 
@@ -293,9 +383,11 @@ courtSelect.addEventListener("change", () => {
 });
 
 
-/* Year range */
+/* -------------------------
+   Year Slider
+------------------------- */
 
-function updateYearDisplay() {
+function updateYearSlider() {
 
     let min = Number(minYear.value);
     let max = Number(maxYear.value);
@@ -304,20 +396,43 @@ function updateYearDisplay() {
         [min, max] = [max, min];
     }
 
-    yearDisplay.textContent = `${min} – ${max}`;
+    yearDisplay.textContent =
+        `${min} – ${max}`;
+
+    const minPercent =
+        ((min - 1900) / (2026 - 1900)) * 100;
+
+    const maxPercent =
+        ((max - 1900) / (2026 - 1900)) * 100;
+
+    rangeSelected.style.left =
+        `${minPercent}%`;
+
+    rangeSelected.style.right =
+        `${100 - maxPercent}%`;
 
     filterCases();
 }
 
-minYear.addEventListener("input", updateYearDisplay);
-maxYear.addEventListener("input", updateYearDisplay);
+minYear.addEventListener(
+    "input",
+    updateYearSlider
+);
+
+maxYear.addEventListener(
+    "input",
+    updateYearSlider
+);
 
 
-/* Search and filters */
+/* -------------------------
+   Search + Filters
+------------------------- */
 
 function filterCases() {
 
-    const term = search.value.toLowerCase().trim();
+    const term =
+        search.value.toLowerCase().trim();
 
     let min = Number(minYear.value);
     let max = Number(maxYear.value);
@@ -326,67 +441,74 @@ function filterCases() {
         [min, max] = [max, min];
     }
 
-    const filtered = cases.filter(c => {
+    const filtered =
+        cases.filter(c => {
 
-        const matchesSearch =
-            term === "" ||
-            c.name.toLowerCase().includes(term) ||
-            c.year.toString().includes(term) ||
-            c.court.toLowerCase().includes(term) ||
-            c.area.toLowerCase().includes(term) ||
-            c.summary.toLowerCase().includes(term);
+            const matchesSearch =
+                term === "" ||
+                c.name.toLowerCase().includes(term) ||
+                c.year.toString().includes(term) ||
+                c.court.toLowerCase().includes(term) ||
+                c.area.toLowerCase().includes(term) ||
+                c.summary.toLowerCase().includes(term);
 
-        const matchesLaw =
-            selectedLaws.length === 0 ||
-            selectedLaws.includes(c.area);
+            const matchesLaw =
+                selectedLaws.length === 0 ||
+                selectedLaws.includes(c.area);
 
-        const matchesCourt =
-            selectedCourts.length === 0 ||
-            selectedCourts.some(selectedCourt =>
-                c.court.includes(selectedCourt)
+            const matchesCourt =
+                selectedCourts.length === 0 ||
+                selectedCourts.some(
+                    selectedCourt =>
+                        c.court.includes(selectedCourt)
+                );
+
+            const matchesYear =
+                c.year >= min &&
+                c.year <= max;
+
+            return (
+                matchesSearch &&
+                matchesLaw &&
+                matchesCourt &&
+                matchesYear
             );
-
-        const matchesYear =
-            c.year >= min &&
-            c.year <= max;
-
-        return (
-            matchesSearch &&
-            matchesLaw &&
-            matchesCourt &&
-            matchesYear
-        );
-    });
+        });
 
     displayCases(filtered);
 }
 
 
-/* Search */
+search.addEventListener(
+    "input",
+    filterCases
+);
 
-search.addEventListener("input", filterCases);
 
+/* -------------------------
+   Clear Filters
+------------------------- */
 
-/* Clear filters */
+clearFiltersButton.addEventListener(
+    "click",
+    () => {
 
-clearFiltersButton.addEventListener("click", () => {
+        selectedLaws = [];
+        selectedCourts = [];
 
-    selectedLaws = [];
-    selectedCourts = [];
+        lawSelect.value = "";
+        courtSelect.value = "";
 
-    lawSelect.value = "";
-    courtSelect.value = "";
+        minYear.value = 1900;
+        maxYear.value = 2026;
 
-    minYear.value = 1900;
-    maxYear.value = 2026;
-
-    yearDisplay.textContent = "1900 – 2026";
-
-    updateBubbles();
-    filterCases();
-});
+        updateBubbles();
+        updateYearSlider();
+    }
+);
 
 
 /* Initial display */
 
+updateYearSlider();
 displayCases(cases);
