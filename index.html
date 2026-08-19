@@ -1,20 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CaseFinder</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <h1>⚖️ CaseFinder</h1>
+    <header>
+        <h1>⚖️ CaseFinder</h1>
+        <p>Australian Legal Case Research</p>
+    </header>
 
-    <input
-        type="text"
-        id="search"
-        placeholder="Search cases..."
-    >
+    <main>
+        <section class="search-section">
+            <h2>Search Cases</h2>
 
-    <div id="results"></div>
+            <input
+                type="text"
+                id="search"
+                placeholder="Search by case, year, court, area of law or keyword..."
+                autocomplete="off"
+            >
+
+            <p class="search-help">
+                Try searching for <strong>Mabo</strong>, <strong>1992</strong>,
+                <strong>constitutional</strong>, or <strong>High Court</strong>.
+            </p>
+        </section>
+
+        <section class="results-section">
+            <div class="results-header">
+                <h2>Cases</h2>
+                <span id="result-count"></span>
+            </div>
+
+            <div id="results"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>CaseFinder v0.2</p>
+    </footer>
 
     <script src="script.js"></script>
 
