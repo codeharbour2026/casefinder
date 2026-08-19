@@ -1,45 +1,69 @@
 const cases = [
     {
+        id: "mabo-1992",
         name: "Mabo v Queensland (No 2)",
         year: 1992,
         court: "High Court of Australia",
         area: "Native Title",
-        summary: "A landmark High Court decision recognising native title in Australian law."
+        citation: "[1992] HCA 23",
+        summary: "A landmark High Court decision recognising native title in Australian law.",
+        description: "The case considered whether Australian common law recognised traditional rights and interests in land held by Indigenous Australians. The decision rejected the legal doctrine of terra nullius and established the recognition of native title.",
+        judgment: "https://www.hcourt.gov.au/"
     },
     {
+        id: "lange-1997",
         name: "Lange v Australian Broadcasting Corporation",
         year: 1997,
         court: "High Court of Australia",
         area: "Constitutional Law",
-        summary: "A major decision concerning the implied freedom of political communication under the Australian Constitution."
+        citation: "[1997] HCA 25",
+        summary: "A major decision concerning the implied freedom of political communication under the Australian Constitution.",
+        description: "The High Court considered the constitutional protection of political communication and established an important framework for considering whether laws that restrict political communication are valid.",
+        judgment: "https://www.hcourt.gov.au/"
     },
     {
+        id: "roach-2007",
         name: "Roach v Electoral Commissioner",
         year: 2007,
         court: "High Court of Australia",
         area: "Electoral Law",
-        summary: "The High Court considered whether laws preventing prisoners from voting were constitutionally valid."
+        citation: "[2007] HCA 43",
+        summary: "The High Court considered whether laws preventing prisoners from voting were constitutionally valid.",
+        description: "The case examined the constitutional requirements surrounding federal elections and whether legislation could completely prevent prisoners from voting.",
+        judgment: "https://www.hcourt.gov.au/"
     },
     {
+        id: "communist-party-1951",
         name: "Australian Communist Party v Commonwealth",
         year: 1951,
         court: "High Court of Australia",
         area: "Constitutional Law",
-        summary: "The High Court considered the constitutional validity of legislation seeking to dissolve the Communist Party of Australia."
+        citation: "[1951] HCA 5",
+        summary: "The High Court considered the constitutional validity of legislation seeking to dissolve the Communist Party of Australia.",
+        description: "The case was an important decision concerning constitutional limits on Commonwealth legislative power and the separation of judicial and legislative functions.",
+        judgment: "https://www.hcourt.gov.au/"
     },
     {
+        id: "love-2020",
         name: "Love v Commonwealth",
         year: 2020,
         court: "High Court of Australia",
         area: "Constitutional Law",
-        summary: "The High Court considered the constitutional meaning of alienage and its application to Aboriginal Australians."
+        citation: "[2020] HCA 3",
+        summary: "The High Court considered the constitutional meaning of alienage and its application to Aboriginal Australians.",
+        description: "The case considered whether Aboriginal Australians could be treated as aliens for the purposes of the Australian Constitution.",
+        judgment: "https://www.hcourt.gov.au/"
     },
     {
+        id: "dietrich-1992",
         name: "Dietrich v The Queen",
         year: 1992,
         court: "High Court of Australia",
         area: "Criminal Law",
-        summary: "A significant case concerning the right to legal representation in serious criminal trials."
+        citation: "[1992] HCA 57",
+        summary: "A significant case concerning the right to legal representation in serious criminal trials.",
+        description: "The High Court considered the circumstances in which an accused person should receive legal representation in a serious criminal trial.",
+        judgment: "https://www.hcourt.gov.au/"
     }
 ];
 
@@ -59,6 +83,10 @@ const yearDisplay = document.getElementById("year-display");
 
 const clearFiltersButton = document.getElementById("clear-filters");
 
+const searchPage = document.getElementById("search-page");
+const casePage = document.getElementById("case-page");
+const backButton = document.getElementById("back-button");
+
 let selectedLaws = [];
 let selectedCourts = [];
 
@@ -66,12 +94,14 @@ let selectedCourts = [];
 /* Display cases */
 
 function displayCases(list) {
+
     results.innerHTML = "";
 
     resultCount.textContent =
         `${list.length} case${list.length === 1 ? "" : "s"}`;
 
     if (list.length === 0) {
+
         results.innerHTML = `
             <div class="no-results">
                 <h3>No cases found</h3>
@@ -85,8 +115,10 @@ function displayCases(list) {
     }
 
     list.forEach(c => {
+
         results.innerHTML += `
             <article class="case-card">
+
                 <h3>${c.name}</h3>
 
                 <div class="case-info">
@@ -96,22 +128,92 @@ function displayCases(list) {
                 <p class="case-summary">
                     ${c.summary}
                 </p>
+
+                <button
+                    class="view-case-button"
+                    onclick="openCase('${c.id}')"
+                >
+                    View Case →
+                </button>
+
             </article>
         `;
     });
 }
 
 
+/* Open individual case */
+
+function openCase(caseId) {
+
+    const selectedCase = cases.find(c => c.id === caseId);
+
+    if (!selectedCase) {
+        return;
+    }
+
+    document.getElementById("case-name").textContent =
+        selectedCase.name;
+
+    document.getElementById("case-citation").textContent =
+        selectedCase.citation;
+
+    document.getElementById("case-area").textContent =
+        selectedCase.area;
+
+    document.getElementById("case-court").textContent =
+        selectedCase.court;
+
+    document.getElementById("case-year").textContent =
+        selectedCase.year;
+
+    document.getElementById("case-law").textContent =
+        selectedCase.area;
+
+    document.getElementById("case-summary").textContent =
+        selectedCase.summary;
+
+    document.getElementById("case-description").textContent =
+        selectedCase.description;
+
+    document.getElementById("judgment-link").href =
+        selectedCase.judgment;
+
+    searchPage.classList.add("hidden");
+    casePage.classList.remove("hidden");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* Back to search */
+
+backButton.addEventListener("click", () => {
+
+    casePage.classList.add("hidden");
+    searchPage.classList.remove("hidden");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
+
 /* Create filter bubble */
 
 function createBubble(container, value, type) {
+
     const bubble = document.createElement("div");
 
     bubble.classList.add("bubble");
 
     bubble.innerHTML = `
         <span>${value}</span>
-        <button class="remove-btn" aria-label="Remove ${value}">
+        <button class="remove-btn">
             ×
         </button>
     `;
@@ -140,9 +242,10 @@ function createBubble(container, value, type) {
 }
 
 
-/* Update filter bubbles */
+/* Update bubbles */
 
 function updateBubbles() {
+
     lawBubbles.innerHTML = "";
     courtBubbles.innerHTML = "";
 
@@ -156,7 +259,7 @@ function updateBubbles() {
 }
 
 
-/* Add law filter */
+/* Law filter */
 
 lawSelect.addEventListener("change", () => {
 
@@ -173,7 +276,7 @@ lawSelect.addEventListener("change", () => {
 });
 
 
-/* Add court filter */
+/* Court filter */
 
 courtSelect.addEventListener("change", () => {
 
@@ -210,7 +313,7 @@ minYear.addEventListener("input", updateYearDisplay);
 maxYear.addEventListener("input", updateYearDisplay);
 
 
-/* Search + filters */
+/* Search and filters */
 
 function filterCases() {
 
