@@ -47,3 +47,16 @@ Added professional styling for the filter panel, dropdowns, filter bubbles, Clea
 script.js — v0.3
 
 Added multiple Australian cases with court and law information. Added Type of Law filters, Level of Court filters, removable filter bubbles, a dual year-range filter, combined filtering, and Cl
+
+
+index.html — v0.4
+
+Added individual case pages. Added View Case buttons to case results. Added detailed case information sections for court, year, area of law, citation, summary, description, and judgment links. Added Back to Results navigation.
+
+style.css — v0.4
+
+Added styling for individual case pages, case metadata, law badges, View Case buttons, Back to Results button, case information sections, and judgment buttons. Added responsive styling for case pages on smaller screens.
+
+script.js — v0.4
+
+Added unique case IDs, citations, descriptions, and judgment links. Added functionality to open individual case pages from search results and return to the search page. Updated case information display and navigation.
