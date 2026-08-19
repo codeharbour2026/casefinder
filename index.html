@@ -3,16 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CaseFinder</title>
+    <title>CaseFinder — Australian Legal Research</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-    <h1>⚖️ CaseFinder</h1>
-    <p>Australian Legal Case Research</p>
+<header class="site-header">
+
+    <nav class="navbar">
+
+        <button class="brand" id="home-button">
+            <span class="brand-icon">⚖</span>
+            <span>CaseFinder</span>
+        </button>
+
+        <div class="nav-links">
+            <button id="nav-search">Search Cases</button>
+            <button id="nav-about">About</button>
+        </div>
+
+        <button class="mobile-menu-button" id="mobile-menu-button">
+            ☰
+        </button>
+
+    </nav>
+
+    <div class="mobile-nav" id="mobile-nav">
+        <button id="mobile-search">Search Cases</button>
+        <button id="mobile-about">About</button>
+    </div>
+
 </header>
+
 
 <main>
 
@@ -20,87 +43,200 @@
 
     <div id="search-page">
 
-        <section class="search-section">
-            <h2>Search Cases</h2>
+        <section class="hero">
 
-            <input
-                type="text"
-                id="search"
-                placeholder="Search by case, judge, keyword..."
-                autocomplete="off"
-            >
+            <div class="hero-content">
+
+                <span class="eyebrow">
+                    AUSTRALIAN LEGAL RESEARCH
+                </span>
+
+                <h1>
+                    Find the cases<br>
+                    <span>that matter.</span>
+                </h1>
+
+                <p>
+                    Search Australian court cases with powerful filters
+                    designed to make legal research faster and easier.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="search-section">
+
+            <div class="search-title">
+                <div>
+                    <span class="section-label">CASE DATABASE</span>
+                    <h2>Search Cases</h2>
+                </div>
+            </div>
+
+            <div class="search-box">
+
+                <span class="search-icon">⌕</span>
+
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Search cases, courts, years, areas of law..."
+                    autocomplete="off"
+                >
+
+                <kbd>⌘ K</kbd>
+
+            </div>
 
             <p class="search-help">
-                Search for a case name, year, court, area of law or keyword.
+                Search by case name, year, court, area of law or keyword.
             </p>
+
         </section>
+
 
         <section class="filters-section">
 
             <div class="filters-header">
+
                 <div>
-                    <h2>Filters</h2>
-                    <p>Narrow your search</p>
+                    <span class="section-label">REFINE RESULTS</span>
+                    <h2>Advanced Filters</h2>
+                    <p>Narrow your research to find relevant cases.</p>
                 </div>
 
                 <button id="clear-filters" class="clear-button">
-                    Clear Filters
+                    Clear all
                 </button>
+
             </div>
 
-            <div class="filter-group">
-                <label for="law-select">Type of Law</label>
 
-                <select id="law-select">
-                    <option value="">Select a type of law...</option>
-                    <option value="Constitutional Law">Constitutional Law</option>
-                    <option value="Criminal Law">Criminal Law</option>
-                    <option value="Contract Law">Contract Law</option>
-                    <option value="Family Law">Family Law</option>
-                    <option value="Property Law">Property Law</option>
-                    <option value="Native Title">Native Title</option>
-                    <option value="Electoral Law">Electoral Law</option>
-                    <option value="Administrative Law">Administrative Law</option>
-                </select>
+            <div class="filter-grid">
 
-                <div id="law-bubbles" class="bubble-container"></div>
+                <!-- Type of Law -->
+
+                <div class="filter-group">
+
+                    <label for="law-select">
+                        Type of Law
+                    </label>
+
+                    <select id="law-select">
+
+                        <option value="">
+                            Select a type of law...
+                        </option>
+
+                        <option value="Constitutional Law">
+                            Constitutional Law
+                        </option>
+
+                        <option value="Criminal Law">
+                            Criminal Law
+                        </option>
+
+                        <option value="Contract Law">
+                            Contract Law
+                        </option>
+
+                        <option value="Family Law">
+                            Family Law
+                        </option>
+
+                        <option value="Property Law">
+                            Property Law
+                        </option>
+
+                        <option value="Native Title">
+                            Native Title
+                        </option>
+
+                        <option value="Electoral Law">
+                            Electoral Law
+                        </option>
+
+                        <option value="Administrative Law">
+                            Administrative Law
+                        </option>
+
+                    </select>
+
+                    <div id="law-bubbles" class="bubble-container"></div>
+
+                </div>
+
+
+                <!-- Court -->
+
+                <div class="filter-group">
+
+                    <label for="court-select">
+                        Level of Court
+                    </label>
+
+                    <select id="court-select">
+
+                        <option value="">
+                            Select a court...
+                        </option>
+
+                        <option value="High Court of Australia">
+                            High Court of Australia
+                        </option>
+
+                        <option value="Federal Court of Australia">
+                            Federal Court of Australia
+                        </option>
+
+                        <option value="Supreme Court">
+                            Supreme Court
+                        </option>
+
+                        <option value="District Court">
+                            District Court
+                        </option>
+
+                        <option value="Local Court">
+                            Local Court
+                        </option>
+
+                    </select>
+
+                    <div id="court-bubbles" class="bubble-container"></div>
+
+                </div>
+
             </div>
 
-            <div class="filter-group">
-                <label for="court-select">Level of Court</label>
 
-                <select id="court-select">
-                    <option value="">Select a court...</option>
-                    <option value="High Court of Australia">
-                        High Court of Australia
-                    </option>
-                    <option value="Federal Court of Australia">
-                        Federal Court of Australia
-                    </option>
-                    <option value="Supreme Court">
-                        Supreme Court
-                    </option>
-                    <option value="District Court">
-                        District Court
-                    </option>
-                    <option value="Local Court">
-                        Local Court
-                    </option>
-                </select>
-
-                <div id="court-bubbles" class="bubble-container"></div>
-            </div>
+            <!-- Year -->
 
             <div class="filter-group year-group">
 
                 <div class="year-title">
-                    <label>Year Range</label>
-                    <span id="year-display">1900 – 2026</span>
+
+                    <div>
+                        <label>Year Range</label>
+                        <p>Select the period you want to search.</p>
+                    </div>
+
+                    <strong id="year-display">
+                        1900 – 2026
+                    </strong>
+
                 </div>
 
                 <div class="range-container">
 
                     <div class="range-track"></div>
+
+                    <div
+                        class="range-selected"
+                        id="range-selected"
+                    ></div>
 
                     <input
                         type="range"
@@ -124,11 +260,20 @@
 
         </section>
 
+
+        <!-- Results -->
+
         <section class="results-section">
 
             <div class="results-header">
-                <h2>Cases</h2>
+
+                <div>
+                    <span class="section-label">RESULTS</span>
+                    <h2>Cases</h2>
+                </div>
+
                 <span id="result-count"></span>
+
             </div>
 
             <div id="results"></div>
@@ -138,7 +283,7 @@
     </div>
 
 
-    <!-- Case Details Page -->
+    <!-- Case Page -->
 
     <div id="case-page" class="case-page hidden">
 
@@ -158,24 +303,26 @@
 
             </div>
 
+
             <div class="case-meta">
 
                 <div>
-                    <span>Court</span>
+                    <span>COURT</span>
                     <strong id="case-court"></strong>
                 </div>
 
                 <div>
-                    <span>Year</span>
+                    <span>YEAR</span>
                     <strong id="case-year"></strong>
                 </div>
 
                 <div>
-                    <span>Area of Law</span>
+                    <span>AREA OF LAW</span>
                     <strong id="case-law"></strong>
                 </div>
 
             </div>
+
 
             <div class="case-content">
 
@@ -183,17 +330,19 @@
 
                 <p id="case-summary"></p>
 
+
                 <h3>Key Information</h3>
 
                 <p id="case-description"></p>
+
 
                 <div class="judgment-section">
 
                     <h3>Judgment</h3>
 
-                    <p class="judgment-note">
-                        The full judgment can be accessed from the
-                        official court or legal database.
+                    <p>
+                        Access the full judgment from the relevant
+                        official source.
                     </p>
 
                     <a
@@ -214,11 +363,48 @@
 
     </div>
 
+
+    <!-- About -->
+
+    <section id="about-page" class="about-page hidden">
+
+        <span class="section-label">ABOUT CASEFINDER</span>
+
+        <h1>Legal research,<br>made simpler.</h1>
+
+        <p>
+            CaseFinder is a prototype Australian legal research platform
+            designed to help users discover and explore court cases.
+        </p>
+
+        <p>
+            This project is currently in development. Its goal is to make
+            legal research easier through powerful search, filtering and
+            eventually AI-assisted research tools.
+        </p>
+
+        <div class="about-card">
+            <strong>Current Version</strong>
+            <span>CaseFinder v0.5</span>
+        </div>
+
+    </section>
+
 </main>
 
+
 <footer>
-    <p>CaseFinder v0.4</p>
+
+    <div class="footer-brand">
+        ⚖️ CaseFinder
+    </div>
+
+    <p>
+        Australian Legal Research · v0.5
+    </p>
+
 </footer>
+
 
 <script src="script.js"></script>
 
