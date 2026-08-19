@@ -9,43 +9,141 @@
 
 <body>
 
-    <header>
-        <h1>⚖️ CaseFinder</h1>
-        <p>Australian Legal Case Research</p>
-    </header>
+<header>
+    <h1>⚖️ CaseFinder</h1>
+    <p>Australian Legal Case Research</p>
+</header>
 
-    <main>
-        <section class="search-section">
-            <h2>Search Cases</h2>
+<main>
 
-            <input
-                type="text"
-                id="search"
-                placeholder="Search by case, year, court, area of law or keyword..."
-                autocomplete="off"
-            >
+    <section class="search-section">
+        <h2>Search Cases</h2>
 
-            <p class="search-help">
-                Try searching for <strong>Mabo</strong>, <strong>1992</strong>,
-                <strong>constitutional</strong>, or <strong>High Court</strong>.
-            </p>
-        </section>
+        <input
+            type="text"
+            id="search"
+            placeholder="Search by case, judge, keyword..."
+            autocomplete="off"
+        >
 
-        <section class="results-section">
-            <div class="results-header">
-                <h2>Cases</h2>
-                <span id="result-count"></span>
+        <p class="search-help">
+            Search for a case name, year, court, area of law or keyword.
+        </p>
+    </section>
+
+    <section class="filters-section">
+
+        <div class="filters-header">
+            <div>
+                <h2>Filters</h2>
+                <p>Narrow your search</p>
             </div>
 
-            <div id="results"></div>
-        </section>
-    </main>
+            <button id="clear-filters" class="clear-button">
+                Clear Filters
+            </button>
+        </div>
 
-    <footer>
-        <p>CaseFinder v0.2</p>
-    </footer>
+        <!-- Type of Law -->
+        <div class="filter-group">
+            <label for="law-select">Type of Law</label>
 
-    <script src="script.js"></script>
+            <select id="law-select">
+                <option value="">Select a type of law...</option>
+                <option value="Constitutional Law">Constitutional Law</option>
+                <option value="Criminal Law">Criminal Law</option>
+                <option value="Contract Law">Contract Law</option>
+                <option value="Family Law">Family Law</option>
+                <option value="Property Law">Property Law</option>
+                <option value="Native Title">Native Title</option>
+                <option value="Electoral Law">Electoral Law</option>
+                <option value="Administrative Law">Administrative Law</option>
+            </select>
+
+            <div id="law-bubbles" class="bubble-container"></div>
+        </div>
+
+        <!-- Level of Court -->
+        <div class="filter-group">
+            <label for="court-select">Level of Court</label>
+
+            <select id="court-select">
+                <option value="">Select a court...</option>
+                <option value="High Court of Australia">
+                    High Court of Australia
+                </option>
+                <option value="Federal Court of Australia">
+                    Federal Court of Australia
+                </option>
+                <option value="Supreme Court">
+                    Supreme Court
+                </option>
+                <option value="District Court">
+                    District Court
+                </option>
+                <option value="Local Court">
+                    Local Court
+                </option>
+            </select>
+
+            <div id="court-bubbles" class="bubble-container"></div>
+        </div>
+
+        <!-- Year Range -->
+        <div class="filter-group year-group">
+
+            <div class="year-title">
+                <label>Year Range</label>
+
+                <span id="year-display">
+                    1900 – 2026
+                </span>
+            </div>
+
+            <div class="range-container">
+
+                <div class="range-track"></div>
+
+                <input
+                    type="range"
+                    id="min-year"
+                    min="1900"
+                    max="2026"
+                    value="1900"
+                >
+
+                <input
+                    type="range"
+                    id="max-year"
+                    min="1900"
+                    max="2026"
+                    value="2026"
+                >
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="results-section">
+
+        <div class="results-header">
+            <h2>Cases</h2>
+            <span id="result-count"></span>
+        </div>
+
+        <div id="results"></div>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>CaseFinder v0.3</p>
+</footer>
+
+<script src="script.js"></script>
 
 </body>
 </html>
