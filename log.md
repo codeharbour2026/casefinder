@@ -36,3 +36,14 @@ script.js — v0.2
 
 Upgraded the case database with court, area of law, and summary information. Added multi-field search across case name, year, court, area of law, and summary. Added result counting and a no-results message.
 
+index.html — v0.3
+
+Added an advanced filters panel with Type of Law selection, Level of Court selection, and a dual year-range slider. Added removable filter bubbles and a Clear Filters button.
+
+style.css — v0.3
+
+Added professional styling for the filter panel, dropdowns, filter bubbles, Clear Filters button, dual year slider, year display, and improved case cards.
+
+script.js — v0.3
+
+Added multiple Australian cases with court and law information. Added Type of Law filters, Level of Court filters, removable filter bubbles, a dual year-range filter, combined filtering, and Cl
