@@ -1,16 +1,141 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    background: #f5f6f8;
+    color: #20242a;
 }
 
-h1 {
+/* Header */
+
+header {
     text-align: center;
+    padding: 45px 20px 30px;
 }
 
-input {
+header h1 {
+    margin: 0;
+    font-size: 42px;
+}
+
+header p {
+    margin-top: 10px;
+    color: #666;
+    font-size: 17px;
+}
+
+/* Main */
+
+main {
+    padding-bottom: 40px;
+}
+
+/* Search */
+
+.search-section {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.search-section h2 {
+    margin-top: 0;
+}
+
+#search {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+}
+
+#search:focus {
+    border-color: #333;
+}
+
+.search-help {
+    margin-bottom: 0;
+    color: #777;
+    font-size: 14px;
+}
+
+/* Results */
+
+.results-section {
+    margin-top: 30px;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.results-header h2 {
+    margin-bottom: 15px;
+}
+
+#result-count {
+    color: #777;
+    font-size: 14px;
+}
+
+/* Case cards */
+
+.case-card {
+    background: white;
+    padding: 22px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #222;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.case-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+}
+
+.case-card h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.case-info {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.case-summary {
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* No results */
+
+.no-results {
+    background: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+    color: #666;
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+    padding: 30px 0;
+    color: #888;
+    font-size: 13px;
 }
