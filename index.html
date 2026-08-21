@@ -10,7 +10,6 @@
 <body>
 
 <header class="site-header">
-
     <nav class="navbar">
 
         <button class="brand" id="home-button">
@@ -20,6 +19,7 @@
 
         <div class="nav-links">
             <button id="nav-search">Search Cases</button>
+            <button id="nav-saved">Saved Cases</button>
             <button id="nav-about">About</button>
         </div>
 
@@ -31,20 +31,17 @@
 
     <div class="mobile-nav" id="mobile-nav">
         <button id="mobile-search">Search Cases</button>
+        <button id="mobile-saved">Saved Cases</button>
         <button id="mobile-about">About</button>
     </div>
-
 </header>
 
 
 <main>
 
-    <!-- Search Page -->
-
     <div id="search-page">
 
         <section class="hero">
-
             <div class="hero-content">
 
                 <span class="eyebrow">
@@ -62,18 +59,13 @@
                 </p>
 
             </div>
-
         </section>
 
 
         <section class="search-section">
 
-            <div class="search-title">
-                <div>
-                    <span class="section-label">CASE DATABASE</span>
-                    <h2>Search Cases</h2>
-                </div>
-            </div>
+            <span class="section-label">CASE DATABASE</span>
+            <h2>Search Cases</h2>
 
             <div class="search-box">
 
@@ -83,7 +75,6 @@
                     type="text"
                     id="search"
                     placeholder="Search cases, courts, years, areas of law..."
-                    autocomplete="off"
                 >
 
                 <kbd>⌘ K</kbd>
@@ -115,8 +106,6 @@
 
 
             <div class="filter-grid">
-
-                <!-- Type of Law -->
 
                 <div class="filter-group">
 
@@ -169,8 +158,6 @@
                 </div>
 
 
-                <!-- Court -->
-
                 <div class="filter-group">
 
                     <label for="court-select">
@@ -212,8 +199,6 @@
             </div>
 
 
-            <!-- Year -->
-
             <div class="filter-group year-group">
 
                 <div class="year-title">
@@ -232,11 +217,7 @@
                 <div class="range-container">
 
                     <div class="range-track"></div>
-
-                    <div
-                        class="range-selected"
-                        id="range-selected"
-                    ></div>
+                    <div class="range-selected" id="range-selected"></div>
 
                     <input
                         type="range"
@@ -260,8 +241,6 @@
 
         </section>
 
-
-        <!-- Results -->
 
         <section class="results-section">
 
@@ -295,11 +274,23 @@
 
             <div class="case-details-header">
 
-                <span id="case-area" class="case-badge"></span>
+                <div class="case-heading-row">
 
-                <h2 id="case-name"></h2>
+                    <div>
+                        <span id="case-area" class="case-badge"></span>
 
-                <p id="case-citation"></p>
+                        <h2 id="case-name"></h2>
+
+                        <p id="case-citation"></p>
+                    </div>
+
+                    <button id="save-case-button" class="save-button">
+                        ☆ Save Case
+                    </button>
+
+                </div>
+
+                <div id="case-tags" class="case-tags"></div>
 
             </div>
 
@@ -326,23 +317,57 @@
 
             <div class="case-content">
 
-                <h3>Case Summary</h3>
+                <section class="case-section">
 
-                <p id="case-summary"></p>
+                    <h3>Case Summary</h3>
+
+                    <p id="case-summary"></p>
+
+                </section>
 
 
-                <h3>Key Information</h3>
+                <section class="case-section">
 
-                <p id="case-description"></p>
+                    <h3>Key Facts</h3>
+
+                    <p id="case-facts"></p>
+
+                </section>
+
+
+                <section class="case-section">
+
+                    <h3>Legal Issues</h3>
+
+                    <p id="case-issues"></p>
+
+                </section>
+
+
+                <section class="case-section">
+
+                    <h3>Decision</h3>
+
+                    <p id="case-decision"></p>
+
+                </section>
+
+
+                <section class="case-section">
+
+                    <h3>Why It Matters</h3>
+
+                    <p id="case-significance"></p>
+
+                </section>
 
 
                 <div class="judgment-section">
 
-                    <h3>Judgment</h3>
+                    <h3>Full Judgment</h3>
 
                     <p>
-                        Access the full judgment from the relevant
-                        official source.
+                        Access the judgment from the relevant official source.
                     </p>
 
                     <a
@@ -364,13 +389,33 @@
     </div>
 
 
+    <!-- Saved Cases -->
+
+    <section id="saved-page" class="saved-page hidden">
+
+        <span class="section-label">YOUR RESEARCH</span>
+
+        <h1>Saved Cases</h1>
+
+        <p>
+            Cases you save will appear here.
+        </p>
+
+        <div id="saved-results"></div>
+
+    </section>
+
+
     <!-- About -->
 
     <section id="about-page" class="about-page hidden">
 
         <span class="section-label">ABOUT CASEFINDER</span>
 
-        <h1>Legal research,<br>made simpler.</h1>
+        <h1>
+            Legal research,<br>
+            made simpler.
+        </h1>
 
         <p>
             CaseFinder is a prototype Australian legal research platform
@@ -378,14 +423,15 @@
         </p>
 
         <p>
-            This project is currently in development. Its goal is to make
-            legal research easier through powerful search, filtering and
-            eventually AI-assisted research tools.
+            This project is currently in development.
         </p>
 
         <div class="about-card">
+
             <strong>Current Version</strong>
-            <span>CaseFinder v0.5</span>
+
+            <span>CaseFinder v0.6</span>
+
         </div>
 
     </section>
@@ -400,7 +446,7 @@
     </div>
 
     <p>
-        Australian Legal Research · v0.5
+        Australian Legal Research · v0.6
     </p>
 
 </footer>
