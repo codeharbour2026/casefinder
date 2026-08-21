@@ -60,3 +60,12 @@ Added styling for individual case pages, case metadata, law badges, View Case bu
 script.js — v0.4
 
 Added unique case IDs, citations, descriptions, and judgment links. Added functionality to open individual case pages from search results and return to the search page. Updated case information display and navigation.
+
+
+
+index.html — v0.6
+Added a dedicated case-details layout with expandable sections for case summary, key facts, legal issues, decision, and significance. Added a "Save Case" button, case tags, and a more detailed results layout. Added accessibility labels and improved semantic HTML.
+style.css — v0.6
+Added styling for the expanded case information, case tags, Save Case button, information sections, and improved case result cards. Added hover and focus states for interactive elements.
+script.js — v0.6
+Added expandable case information and Save Case functionality using localStorage. Saved cases remain available after refreshing the page. Added logic to update the Save/Unsave button automatically.
