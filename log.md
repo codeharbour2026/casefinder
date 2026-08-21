@@ -61,7 +61,17 @@ script.js — v0.4
 
 Added unique case IDs, citations, descriptions, and judgment links. Added functionality to open individual case pages from search results and return to the search page. Updated case information display and navigation.
 
+index.html — v0.5
 
+Added a professional navigation bar. Added Search Cases, Saved Cases, and About pages. Added a responsive mobile menu. Added a modern homepage hero section. Added footer and page navigation structure.
+
+style.css — v0.5
+
+Added premium navigation styling. Added hero section styling. Added responsive mobile navigation. Improved spacing, typography, and page structure. Added hover animations and smoother transitions throughout the site.
+
+script.js — v0.5
+
+Added navigation between Search, Saved Cases, and About pages. Added mobile menu functionality. Added keyboard shortcut (Ctrl+K / Cmd+K) to focus the search bar. Improved page organization and user experience.
 
 index.html — v0.6
 Added a dedicated case-details layout with expandable sections for case summary, key facts, legal issues, decision, and significance. Added a "Save Case" button, case tags, and a more detailed results layout. Added accessibility labels and improved semantic HTML.
